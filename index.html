@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soma Yeluri | Software Engineer Portfolio</title>
+<meta name="description" content="Soma Yeluri is a Software Engineer with 5+ years of experience in Java, Spring Boot, microservices, healthcare/PBM, payments, banking, AWS, Azure, Kafka, and AI-powered enterprise applications.">
+<meta name="keywords" content="Soma Yeluri, Software Engineer, Java, Spring Boot, Microservices, Apache Kafka, AWS, Azure, Generative AI, RAG, Healthcare, Payments, Banking">
+<meta name="author" content="Soma Yeluri">
+<meta property="og:title" content="Soma Yeluri | Software Engineer">
+<meta property="og:description" content="Software Engineer specializing in Java, Spring Boot, cloud-native microservices, event-driven systems, payments, healthcare, and AI-powered applications.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#F8FAFC;--card:#FFFFFF;--primary:#2563EB;--secondary:#06B6D4;--accent:#7C3AED;
+--text:#0F172A;--muted:#64748B;--border:rgba(0,0,0,0.08);
+--glass:rgba(255,255,255,0.7);--glass-border:rgba(255,255,255,0.3);
+--shadow:0 4px 24px rgba(0,0,0,0.06);--shadow-lg:0 20px 60px rgba(0,0,0,0.1);
+--radius:16px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"]{
+--bg:#0F172A;--card:#1E293B;--primary:#3B82F6;--secondary:#22D3EE;--accent:#A855F7;
+--text:#F8FAFC;--muted:#CBD5E1;--border:rgba(255,255,255,0.08);
+--glass:rgba(30,41,59,0.7);--glass-border:rgba(255,255,255,0.1);
+--shadow:0 4px 24px rgba(0,0,0,0.3);--shadow-lg:0 20px 60px rgba(0,0,0,0.4);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background var(--transition),color var(--transition);overflow-x:hidden;width:100%}
+h1,h2,h3,h4,h5,h6{line-height:1.2;font-weight:700}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
+#loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity 0.5s,visibility 0.5s}
+#loader.hidden{opacity:0;visibility:hidden}
+.loader-content{text-align:center}
+.loader-spinner{width:48px;height:48px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{font-size:14px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+#scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));z-index:10001;transition:width 0.1s;width:0}
+#cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s}
+[data-theme="dark"] #cursor-glow{background:radial-gradient(circle,rgba(59,130,246,0.12) 0%,transparent 70%)}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:all var(--transition)}
+.navbar.scrolled{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);padding:10px 0;box-shadow:var(--shadow)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:var(--muted);transition:all var(--transition);position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--primary);background:rgba(37,99,235,0.08)}
+.theme-toggle{width:40px;height:40px;border-radius:10px;border:1px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--text);transition:all var(--transition)}
+.theme-toggle:hover{border-color:var(--primary);color:var(--primary);transform:scale(1.05)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:1001}
+.hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all var(--transition)}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-gradient{position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:0.15;animation:float 8s ease-in-out infinite}
+.hero-gradient:nth-child(1){background:var(--primary);top:-200px;right:-100px}
+.hero-gradient:nth-child(2){background:var(--accent);bottom:-200px;left:-100px;animation-delay:-4s}
+.hero-gradient:nth-child(3){background:var(--secondary);top:50%;left:50%;animation-delay:-2s;width:400px;height:400px}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+.particles{position:absolute;inset:0}
+.particle{position:absolute;width:4px;height:4px;background:var(--primary);border-radius:50%;opacity:0.2;animation:particleFloat 15s linear infinite}
+@keyframes particleFloat{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:0.2}90%{opacity:0.2}100%{transform:translateY(-100px) rotate(720deg);opacity:0}}
+.hero-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:center;position:relative;z-index:1;width:100%}
+.hero-image-wrap{display:flex;justify-content:center;min-width:0}
+.hero-image-container{position:relative;width:340px;max-width:100%;height:340px;animation:heroFloat 6s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+.hero-image-ring{position:absolute;inset:-8px;border-radius:50%;border:2px solid transparent;border-top-color:var(--primary);border-right-color:var(--secondary);animation:ringRotate 8s linear infinite}
+@keyframes ringRotate{to{transform:rotate(360deg)}}
+.hero-image-ring:nth-child(2){inset:-16px;border-top-color:var(--accent);animation-direction:reverse;animation-duration:12s}
+.hero-image{width:340px;max-width:100%;height:340px;border-radius:50%;object-fit:cover;border:4px solid var(--card);box-shadow:var(--shadow-lg)}
+.hero-text{animation:fadeUp 0.8s ease-out;min-width:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);border-radius:100px;font-size:13px;font-weight:500;color:var(--primary);margin-bottom:20px}
+.hero-badge .dot{width:8px;height:8px;background:var(--primary);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.2)}}
+.hero-name{font-size:clamp(28px,5vw,56px);font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,var(--text) 0%,var(--primary) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;word-break:break-word}
+.hero-title{font-size:clamp(18px,3vw,24px);font-weight:600;color:var(--primary);margin-bottom:12px}
+.hero-tagline{font-size:16px;color:var(--muted);margin-bottom:16px;font-weight:400}
+.typing-text{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--secondary);margin-bottom:24px;min-height:24px;word-break:break-word}
+.typing-cursor{display:inline-block;width:2px;height:16px;background:var(--secondary);animation:blink 1s infinite;vertical-align:middle;margin-left:2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all var(--transition);position:relative;overflow:hidden;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;box-shadow:0 4px 15px rgba(37,99,235,0.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(37,99,235,0.4)}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+.btn-icon{width:44px;height:44px;padding:0;justify-content:center;border-radius:10px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.stat{text-align:center;padding:16px 8px;background:var(--glass);backdrop-filter:blur(10px);border-radius:12px;border:1px solid var(--glass-border);min-width:0}
+.stat-value{font-size:24px;font-weight:800;color:var(--primary);display:block}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.section{padding:100px 0;position:relative}
+.section-header{text-align:center;margin-bottom:60px}
+.section-label{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(37,99,235,0.08);border-radius:100px;font-size:12px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.section-title{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px}
+.section-desc{font-size:16px;color:var(--muted);max-width:600px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.about-text{min-width:0}
+.about-text p{color:var(--muted);margin-bottom:20px;font-size:16px}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.about-tag{padding:6px 14px;background:rgba(37,99,235,0.08);border-radius:100px;font-size:13px;font-weight:500;color:var(--primary);border:1px solid rgba(37,99,235,0.15);transition:all var(--transition)}
+.about-tag:hover{background:var(--primary);color:#fff;transform:translateY(-2px)}
+.about-counters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;min-width:0}
+.counter-card{background:var(--card);border-radius:var(--radius);padding:28px;border:1px solid var(--border);text-align:center;transition:all var(--transition);position:relative;overflow:hidden;min-width:0}
+.counter-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,99,235,0.03),rgba(124,58,237,0.03));opacity:0;transition:opacity var(--transition)}
+.counter-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.counter-card:hover::before{opacity:1}
+.counter-value{font-size:36px;font-weight:800;color:var(--primary);display:block;position:relative}
+.counter-label{font-size:13px;color:var(--muted);margin-top:8px;position:relative}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.skill-card{background:var(--card);border-radius:var(--radius);padding:32px;border:1px solid var(--border);transition:all 0.4s;position:relative;overflow:hidden;min-width:0}
+.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));transform:scaleX(0);transition:transform 0.4s;transform-origin:left}
+.skill-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+.skill-card:hover::before{transform:scaleX(1)}
+.skill-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
+.skill-icon.blue{background:rgba(37,99,235,0.1);color:var(--primary)}
+.skill-icon.cyan{background:rgba(6,182,212,0.1);color:var(--secondary)}
+.skill-icon.purple{background:rgba(124,58,237,0.1);color:var(--accent)}
+.skill-icon.green{background:rgba(16,185,129,0.1);color:#10B981}
+.skill-icon.orange{background:rgba(234,88,12,0.1);color:#EA580C}
+.skill-card h3{font-size:18px;margin-bottom:16px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{padding:4px 12px;background:var(--bg);border-radius:6px;font-size:12px;color:var(--muted);font-weight:500;border:1px solid var(--border);transition:all var(--transition)}
+.skill-tag:hover{color:var(--primary);border-color:var(--primary);background:rgba(37,99,235,0.05)}
+.timeline{position:relative;max-width:800px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--border);transform:translateX(-50%)}
+.timeline-item{position:relative;margin-bottom:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.timeline-item:nth-child(even){direction:rtl}
+.timeline-item:nth-child(even) .timeline-content{direction:ltr}
+.timeline-item:nth-child(even) .timeline-spacer{direction:ltr}
+.timeline-dot{position:absolute;left:50%;top:24px;width:16px;height:16px;background:var(--primary);border-radius:50%;transform:translateX(-50%);z-index:2;border:3px solid var(--bg);box-shadow:0 0 0 3px var(--primary)}
+.timeline-content{background:var(--card);border-radius:var(--radius);padding:28px;border:1px solid var(--border);transition:all var(--transition);min-width:0}
+.timeline-content:hover{box-shadow:var(--shadow-lg);border-color:var(--primary);transform:translateY(-4px)}
+.timeline-company{font-size:13px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.timeline-role{font-size:20px;font-weight:700;margin-bottom:4px}
+.timeline-date{font-size:13px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.timeline-achievements{list-style:none;padding:0}
+.timeline-achievements li{position:relative;padding-left:20px;margin-bottom:8px;font-size:14px;color:var(--muted);line-height:1.6}
+.timeline-achievements li::before{content:'\25B8';position:absolute;left:0;color:var(--primary);font-weight:bold}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.project-card{background:var(--card);border-radius:var(--radius);padding:32px;border:1px solid var(--border);position:relative;overflow:hidden;transition:all 0.4s;min-width:0}
+.project-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,99,235,0.02),rgba(124,58,237,0.02));opacity:0;transition:opacity 0.4s}
+.project-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent 40%,rgba(255,255,255,0.05) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.6s}
+.project-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.project-card:hover::before{opacity:1}
+.project-card:hover::after{transform:translateX(100%)}
+.project-num{font-size:48px;font-weight:900;color:var(--primary);opacity:0.1;line-height:1;margin-bottom:12px}
+.project-card h3{font-size:18px;margin-bottom:12px;position:relative}
+.project-card p{font-size:14px;color:var(--muted);margin-bottom:16px;position:relative;line-height:1.7}
+.project-tech{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.project-tech span{padding:4px 12px;background:rgba(37,99,235,0.08);border-radius:6px;font-size:12px;font-weight:500;color:var(--primary)}
+.project-link{display:inline-block;margin-top:16px;font-size:13px;font-weight:600;color:var(--primary);position:relative}
+.github-cta{text-align:center;margin-top:48px}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.edu-card{background:var(--card);border-radius:var(--radius);padding:32px;border:1px solid var(--border);transition:all var(--transition);position:relative;overflow:hidden;min-width:0}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent))}
+.edu-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.edu-icon{width:48px;height:48px;background:rgba(37,99,235,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--primary);margin-bottom:16px}
+.edu-card h3{font-size:18px;margin-bottom:8px}
+.edu-card .edu-school{font-size:14px;color:var(--primary);font-weight:500;margin-bottom:4px}
+.edu-card .edu-details{font-size:13px;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:20px;min-width:0}
+.contact-item{display:flex;align-items:center;gap:16px;padding:20px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);transition:all var(--transition);min-width:0}
+.contact-item:hover{border-color:var(--primary);transform:translateX(4px)}
+.contact-item-icon{width:44px;height:44px;background:rgba(37,99,235,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:18px;flex-shrink:0}
+.contact-item-text{min-width:0}
+.contact-item-text h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.contact-item-text p,.contact-item-text a{font-size:13px;color:var(--muted);word-break:break-all}
+.contact-item-text a:hover{color:var(--primary)}
+.contact-form{background:var(--card);border-radius:var(--radius);padding:36px;border:1px solid var(--border);min-width:0}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.form-group input,.form-group textarea{width:100%;padding:12px 16px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;color:var(--text);transition:all var(--transition);outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-group .error-msg{font-size:12px;color:#EF4444;margin-top:4px;display:none}
+.form-group.error input,.form-group.error textarea{border-color:#EF4444}
+.form-group.error .error-msg{display:block}
+.form-success{display:none;text-align:center;padding:24px;animation:fadeUp 0.5s}
+.form-success i{font-size:48px;color:#10B981;margin-bottom:12px}
+.form-success p{font-size:16px;font-weight:600}
+.footer{padding:40px 0;border-top:1px solid var(--border);text-align:center}
+.footer p{font-size:14px;color:var(--muted)}
+.footer-links{display:flex;justify-content:center;gap:16px;margin-top:12px}
+.footer-links a{color:var(--muted);font-size:18px;transition:all var(--transition)}
+.footer-links a:hover{color:var(--primary);transform:translateY(-2px)}
+#back-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all var(--transition);z-index:999;box-shadow:0 4px 15px rgba(37,99,235,0.3)}
+#back-top.visible{opacity:1;visibility:visible}
+#back-top:hover{transform:translateY(-3px);box-shadow:0 6px 25px rgba(37,99,235,0.4)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+@media(max-width:1180px){
+.hero-content{grid-template-columns:1fr}
+.hero-image-wrap{order:-1}
+.hero-btns{justify-content:center}
+.hero-text{text-align:center}
+.hero-btns{justify-content:center}
+}
+@media(max-width:1024px){
+.about-grid{grid-template-columns:1fr}
+.contact-grid{grid-template-columns:1fr}
+.timeline::before{left:20px}
+.timeline-item{grid-template-columns:1fr;padding-left:52px}
+.timeline-item:nth-child(even){direction:ltr}
+.timeline-dot{left:20px}
+.timeline-spacer{display:none}
+}
+@media(max-width:768px){
+.nav-links{position:fixed;inset:0;background:var(--bg);flex-direction:column;justify-content:center;align-items:center;gap:16px;opacity:0;visibility:hidden;transition:all var(--transition)}
+.nav-links.open{opacity:1;visibility:visible}
+.hamburger{display:flex}
+.hero-image-container{width:260px;height:260px}
+.hero-image{width:260px;height:260px}
+.hero-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.skills-grid{grid-template-columns:1fr}
+.projects-grid{grid-template-columns:1fr}
+.edu-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+.hero-stats{grid-template-columns:1fr 1fr}
+.stat-value{font-size:20px}
+.hero-btns .btn{padding:10px 18px;font-size:13px}
+.hero-btns{width:100%}
+}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="loader-content"><div class="loader-spinner"></div><div class="loader-text">Loading Portfolio</div></div></div>
+<div id="scroll-progress"></div>
+<div id="cursor-glow"></div>
+
+<nav class="navbar" id="navbar">
+<div class="nav-inner">
+<a href="#home" class="nav-logo">SY</a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home" class="active">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#projects">Highlights</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<div style="display:flex;align-items:center;gap:8px">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+<div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+</div>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="hero-bg">
+<div class="hero-gradient"></div>
+<div class="hero-gradient"></div>
+<div class="hero-gradient"></div>
+<div class="particles" id="particles"></div>
+</div>
+<div class="container">
+<div class="hero-content">
+<div class="hero-image-wrap">
+<div class="hero-image-container">
+<div class="hero-image-ring"></div>
+<div class="hero-image-ring"></div>
+<img class="hero-image" src="https://ui-avatars.com/api/?name=Soma+Yeluri&size=512&background=2563EB&color=FFFFFF&bold=true" alt="Soma Yeluri">
+</div>
+</div>
+<div class="hero-text">
+<div class="hero-badge"><span class="dot"></span> Software Engineer | 5+ Years Experience</div>
+<h1 class="hero-name">Soma Yeluri</h1>
+<p class="hero-title">Software Engineer</p>
+<p class="hero-tagline">Building secure, scalable, and intelligent enterprise applications across healthcare, payments, banking, and transaction-processing domains.</p>
+<div class="typing-text"><span id="typingText"></span><span class="typing-cursor"></span></div>
+<div class="hero-btns">
+<a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact Me</a>
+<a href="#projects" class="btn btn-outline"><i class="fas fa-code"></i> Explore Projects</a>
+<a href="SomaSekharaSriramYeluri.Resume.pdf" class="btn btn-outline" download><i class="fas fa-download"></i> Download Resume</a>
+<a href="https://github.com/SomaYeluri" target="_blank" rel="noopener noreferrer" class="btn btn-icon btn-outline" aria-label="GitHub"><i class="fab fa-github"></i></a>
+</div>
+<div class="hero-stats">
+<div class="stat"><span class="stat-value" data-count="5" data-suffix="+">0</span><div class="stat-label">Years Exp.</div></div>
+<div class="stat"><span class="stat-value" data-count="3" data-suffix="">0</span><div class="stat-label">Organizations</div></div>
+<div class="stat"><span class="stat-value" data-count="24" data-suffix="%">0</span><div class="stat-label">API Response Improvement</div></div>
+<div class="stat"><span class="stat-value" data-count="99" data-suffix=".9%">0</span><div class="stat-label">Service Availability</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="about">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Who I Am</h2>
+<p class="section-desc">A Software Engineer building secure, scalable, cloud-native applications and AI-enabled enterprise workflows.</p>
+</div>
+<div class="about-grid">
+<div class="about-text reveal">
+<p>I'm Soma Yeluri, a Software Engineer with <strong>5+ years of experience</strong> designing, developing, and supporting scalable enterprise applications using Java, Spring Boot, REST APIs, Apache Kafka, SQL, AWS, and Azure.</p>
+<p>My experience spans healthcare and pharmacy benefit management, payment processing, banking, transaction systems, and customer-service platforms. I focus on backend engineering, microservices, event-driven architecture, API performance, database optimization, and secure cloud deployments.</p>
+<p>I also integrate AI and machine learning into enterprise workflows using LLMs, Retrieval-Augmented Generation (RAG), semantic search, document processing, and fraud/anomaly detection. I value automated testing, CI/CD, observability, and production reliability.</p>
+<div class="about-tags">
+<span class="about-tag">Java & Spring Boot</span>
+<span class="about-tag">Microservices</span>
+<span class="about-tag">Kafka</span>
+<span class="about-tag">AWS & Azure</span>
+<span class="about-tag">Docker & Kubernetes</span>
+<span class="about-tag">CI/CD</span>
+<span class="about-tag">LLMs & RAG</span>
+<span class="about-tag">Healthcare & Payments</span>
+</div>
+</div>
+<div class="about-counters reveal">
+<div class="counter-card"><span class="counter-value" data-target="5" data-suffix="+">0</span><div class="counter-label">Years Experience</div></div>
+<div class="counter-card"><span class="counter-value" data-target="3" data-suffix="">0</span><div class="counter-label">Organizations</div></div>
+<div class="counter-card"><span class="counter-value" data-target="24" data-suffix="%">0</span><div class="counter-label">API Response Improvement</div></div>
+<div class="counter-card"><span class="counter-value" data-target="99" data-suffix=".9%">0</span><div class="counter-label">Service Availability</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="skills" style="background:var(--card)">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">My Expertise</h2>
+<p class="section-desc">Backend engineering, event-driven architecture, cloud infrastructure, AI integration, testing, and secure application development.</p>
+</div>
+<div class="skills-grid">
+<div class="skill-card reveal">
+<div class="skill-icon blue"><i class="fas fa-server"></i></div>
+<h3>Backend & Architecture</h3>
+<div class="skill-tags">
+<span class="skill-tag">Java 8/11/17/21</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Spring MVC</span><span class="skill-tag">Spring Security</span><span class="skill-tag">Spring Data JPA</span><span class="skill-tag">Hibernate</span><span class="skill-tag">JDBC</span><span class="skill-tag">Spring Cloud</span><span class="skill-tag">Spring Batch</span><span class="skill-tag">REST APIs</span><span class="skill-tag">SOAP</span><span class="skill-tag">Microservices</span><span class="skill-tag">OpenAPI</span>
+</div></div>
+<div class="skill-card reveal">
+<div class="skill-icon cyan"><i class="fas fa-brain"></i></div>
+<h3>AI, Machine Learning & GenAI</h3>
+<div class="skill-tags">
+<span class="skill-tag">OpenAI API</span><span class="skill-tag">Azure OpenAI</span><span class="skill-tag">LangChain</span><span class="skill-tag">LangGraph</span><span class="skill-tag">RAG</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">Embeddings</span><span class="skill-tag">Vector Search</span><span class="skill-tag">Pinecone</span><span class="skill-tag">FAISS</span><span class="skill-tag">AI Agents</span><span class="skill-tag">MCP</span><span class="skill-tag">Python</span><span class="skill-tag">scikit-learn</span>
+</div></div>
+<div class="skill-card reveal">
+<div class="skill-icon purple"><i class="fas fa-database"></i></div>
+<h3>Databases & Messaging</h3>
+<div class="skill-tags">
+<span class="skill-tag">Oracle</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">SQL Server</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">Apache Kafka</span><span class="skill-tag">Kafka Streams</span><span class="skill-tag">RabbitMQ</span><span class="skill-tag">JMS</span><span class="skill-tag">SQS/SNS</span><span class="skill-tag">EventBridge</span><span class="skill-tag">CDC</span>
+</div></div>
+<div class="skill-card reveal">
+<div class="skill-icon green"><i class="fas fa-cloud"></i></div>
+<h3>Cloud & DevOps</h3>
+<div class="skill-tags">
+<span class="skill-tag">AWS EC2</span><span class="skill-tag">S3</span><span class="skill-tag">RDS</span><span class="skill-tag">Lambda</span><span class="skill-tag">ECS/EKS</span><span class="skill-tag">CloudWatch</span><span class="skill-tag">Azure DevOps</span><span class="skill-tag">Azure Monitor</span><span class="skill-tag">Azure App Service</span><span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Terraform</span><span class="skill-tag">Jenkins</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">CI/CD</span>
+</div></div>
+<div class="skill-card reveal">
+<div class="skill-icon orange"><i class="fas fa-shield-halved"></i></div>
+<h3>Testing, Monitoring & Security</h3>
+<div class="skill-tags">
+<span class="skill-tag">JUnit</span><span class="skill-tag">Mockito</span><span class="skill-tag">TestNG</span><span class="skill-tag">Cucumber</span><span class="skill-tag">Postman</span><span class="skill-tag">SonarQube</span><span class="skill-tag">Splunk</span><span class="skill-tag">ELK</span><span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span class="skill-tag">OpenTelemetry</span><span class="skill-tag">OAuth 2.0</span><span class="skill-tag">JWT</span><span class="skill-tag">RBAC</span><span class="skill-tag">TLS/SSL</span><span class="skill-tag">OWASP</span>
+</div></div>
+<div class="skill-card reveal">
+<div class="skill-icon blue"><i class="fas fa-heart-pulse"></i></div>
+<h3>Domains & Compliance</h3>
+<div class="skill-tags">
+<span class="skill-tag">Healthcare/PBM</span><span class="skill-tag">Claims</span><span class="skill-tag">Member Eligibility</span><span class="skill-tag">PHI/ePHI</span><span class="skill-tag">HIPAA</span><span class="skill-tag">HITECH</span><span class="skill-tag">HL7</span><span class="skill-tag">FHIR</span><span class="skill-tag">EDI/X12</span><span class="skill-tag">Payments</span><span class="skill-tag">Banking</span><span class="skill-tag">Fraud Detection</span><span class="skill-tag">AML/KYC</span><span class="skill-tag">PCI DSS</span><span class="skill-tag">SOX</span>
+</div></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="experience">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Professional Journey</h2>
+<p class="section-desc">Engineering healthcare, pharmacy benefit management, payments, banking, and transaction-processing systems.</p>
+</div>
+<div class="timeline">
+<div class="timeline-item reveal">
+<div class="timeline-content">
+<div class="timeline-company">Cigna Healthcare | USA</div>
+<div class="timeline-role">Software Engineer</div>
+<div class="timeline-date"><i class="far fa-calendar-alt"></i> July 2025 &ndash; Present</div>
+<ul class="timeline-achievements">
+<li>Designed Java 17/21 and Spring Boot microservices for member eligibility, pharmacy benefits, prescription coverage, claims, prior authorization, and service cases, supporting 2M+ transactions per month.</li>
+<li>Reduced average API response time by approximately 24% through SQL optimization, indexing, caching, asynchronous processing, and JVM tuning.</li>
+<li>Built secure REST APIs using Spring Security, OAuth 2.0/JWT, and OpenAPI, supporting 80K+ requests per hour.</li>
+<li>Engineered Kafka, SQS/SNS, and EventBridge workflows processing 1M+ events per day with retry and dead-letter recovery.</li>
+<li>Integrated LLM capabilities for AI-assisted case summarization and information retrieval, plus Python-based document processing with PHI masking.</li>
+<li>Used AWS ECS/EKS, Lambda, API Gateway, and Terraform to support scalable workloads and 99.9% API availability.</li>
+<li>Applied encryption, RBAC, least-privilege access, audit logging, and data masking for HIPAA-aligned PHI/ePHI workflows.</li>
+<li>Improved release quality through JUnit/Mockito, Jenkins CI/CD, Docker, CloudWatch, and automated regression validation, reducing production defects by approximately 18%.</li>
+</ul>
+</div><div class="timeline-spacer"></div><div class="timeline-dot"></div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-spacer"></div>
+<div class="timeline-content">
+<div class="timeline-company">American Express | USA</div>
+<div class="timeline-role">Software Engineer</div>
+<div class="timeline-date"><i class="far fa-calendar-alt"></i> January 2024 &ndash; June 2025</div>
+<ul class="timeline-achievements">
+<li>Developed Java 17/Spring Boot microservices for card authorization, validation, enrichment, reversals, and refunds, processing 100K+ events per hour.</li>
+<li>Reduced end-to-end API latency by approximately 25% through backend optimization.</li>
+<li>Designed Kafka workflows with partitioning, consumer groups, retries, and idempotency, reducing duplicate transaction processing by approximately 30%.</li>
+<li>Built Python/scikit-learn fraud-risk services using transaction, merchant, location, device, and behavioral signals, reducing manual review workload by approximately 20%.</li>
+<li>Deployed Dockerized services on AWS EKS with RDS, Redis, CloudWatch, IAM, KMS, and Secrets Manager, supporting 99.9% availability.</li>
+<li>Improved database response times by approximately 22% through SQL tuning, indexing, JPA/Hibernate, and Redis caching.</li>
+<li>Implemented PCI DSS-aligned card-data masking/tokenization, encryption, least-privilege IAM, and audit logging.</li>
+<li>Developed JUnit/Mockito integration tests and Jenkins CI/CD quality gates, reducing recurring incidents by approximately 20%.</li>
+</ul>
+</div><div class="timeline-dot"></div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-content">
+<div class="timeline-company">Infosys | India</div>
+<div class="timeline-role">Software Engineer</div>
+<div class="timeline-date"><i class="far fa-calendar-alt"></i> June 2020 &ndash; August 2022</div>
+<ul class="timeline-achievements">
+<li>Developed Java 8/Spring Boot microservices for account servicing, fund transfers, payments, and transaction processing, supporting 100K+ daily transaction events.</li>
+<li>Built REST APIs and REST/SOAP integrations for transaction validation, account and balance checks, authorization, status updates, rollback, and retry handling.</li>
+<li>Optimized Oracle SQL queries and indexes, improving transaction API response time by approximately 20%.</li>
+<li>Implemented Kafka producers/consumers and asynchronous processing for transaction events.</li>
+<li>Integrated Python/scikit-learn anomaly detection to identify suspicious transaction patterns and generate risk scores.</li>
+<li>Secured APIs with Spring Security, OAuth 2.0, JWT, and RBAC; masked sensitive account/card data and maintained audit trails.</li>
+<li>Deployed services on Azure App Service, monitored them with Azure Monitor, and configured Azure DevOps Pipelines, supporting approximately 99.9% availability.</li>
+<li>Automated JUnit/Mockito tests in Maven/CI pipelines, helping reduce recurring production defects by approximately 25%.</li>
+</ul>
+</div><div class="timeline-spacer"></div><div class="timeline-dot"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="projects" style="background:var(--card)">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">GitHub Projects</h2>
+<p class="section-desc">Full-stack Java applications, AI-powered tools, document intelligence, and e-commerce systems.</p>
+</div>
+<div class="projects-grid">
+<div class="project-card reveal">
+<div class="project-num">01</div><h3>DocuMind — AI-Powered Document Q&amp;A</h3>
+<p>AI-powered document question-answering service built with Java, Spring Boot, LangChain4j, React, TypeScript, and AWS CDK.</p>
+<div class="project-tech"><span>Java</span><span>Spring Boot</span><span>LangChain4j</span><span>React</span><span>TypeScript</span><span>AWS CDK</span></div>
+<a href="https://github.com/SomaYeluri/documind" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub &rarr;</a>
+</div>
+<div class="project-card reveal">
+<div class="project-num">02</div><h3>Housing Rental AI Assistant</h3>
+<p>RAG-based housing rental assistant combining React, Spring Boot, LangChain4j, MySQL, and Docker for AI-supported rental queries.</p>
+<div class="project-tech"><span>Java</span><span>Spring Boot</span><span>RAG</span><span>LangChain4j</span><span>MySQL</span><span>Docker</span></div>
+<a href="https://github.com/SomaYeluri/Housing-rental-ai-assistant" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub &rarr;</a>
+</div>
+<div class="project-card reveal">
+<div class="project-num">03</div><h3>AI-Powered Resume Analyzer</h3>
+<p>AI-powered full-stack application designed to parse resumes, evaluate content quality, generate resume scores, and provide actionable feedback. Backend developed with Spring Boot.</p>
+<div class="project-tech"><span>Java</span><span>Spring Boot</span><span>AI</span><span>Full Stack</span></div>
+<a href="https://github.com/SomaYeluri/ai-Powered-Resume-Analyzer" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub &rarr;</a>
+</div>
+<div class="project-card reveal">
+<div class="project-num">04</div><h3>E-Commerce Platform</h3>
+<p>Spring Boot e-commerce backend with products, categories, authentication and roles, cart, order lifecycle, Stripe payment integration, and PostgreSQL.</p>
+<div class="project-tech"><span>Java</span><span>Spring Boot</span><span>PostgreSQL</span><span>Stripe</span><span>REST APIs</span></div>
+<a href="https://github.com/SomaYeluri/ecommerceplatform" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub &rarr;</a>
+</div>
+<div class="project-card reveal">
+<div class="project-num">05</div><h3>SmartMart — Full-Stack E-Commerce</h3>
+<p>A full-stack e-commerce platform project. See the repository for the current implementation and available shopping workflows.</p>
+<div class="project-tech"><span>Java</span><span>E-Commerce</span><span>Full Stack</span></div>
+<a href="https://github.com/SomaYeluri/smartmart" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub &rarr;</a>
+</div>
+<div class="project-card reveal">
+<div class="project-num">06</div><h3>Hospital Management System</h3>
+<p>Java-based web application for managing patients, doctors, administrators, and hospital operations.</p>
+<div class="project-tech"><span>Java</span><span>Web Application</span><span>Hospital Management</span></div>
+<a href="https://github.com/SomaYeluri/Hospital_Management-System-HSM" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub &rarr;</a>
+</div>
+<div class="project-card reveal">
+<div class="project-num">07</div><h3>StudentTrack — Full-Stack Dynamic Web Project</h3>
+<p>Java web application using JSP, Servlets, JDBC, and MySQL, with login, signup, password recovery, profile updates, and administrator functionality.</p>
+<div class="project-tech"><span>Java</span><span>JSP</span><span>Servlets</span><span>JDBC</span><span>MySQL</span></div>
+<a href="https://github.com/SomaYeluri/StudentTrack-FullStack-DynamicWebProject" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub &rarr;</a>
+</div>
+</div>
+<div class="github-cta reveal">
+<a href="https://github.com/SomaYeluri" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-github"></i> View All GitHub Projects &rarr;</a>
+</div>
+</div>
+</section>
+
+<section class="section" id="education">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Academic Background</h2>
+<p class="section-desc">Academic foundation in data science and computer science engineering.</p>
+</div>
+<div class="edu-grid">
+<div class="edu-card reveal">
+<div class="edu-icon"><i class="fas fa-university"></i></div>
+<h3>Master of Science in Data Science</h3>
+<div class="edu-school">New Jersey Institute of Technology</div>
+<div class="edu-details">Newark, New Jersey, USA</div>
+</div>
+<div class="edu-card reveal">
+<div class="edu-icon"><i class="fas fa-university"></i></div>
+<h3>Bachelor of Technology in Computer Science and Engineering</h3>
+<div class="edu-school">JAIN (Deemed-to-be University)</div>
+<div class="edu-details">Bengaluru, India</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="contact" style="background:var(--card)">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Get In Touch</h2>
+<p class="section-desc">I'm always open to discussing new opportunities and collaborations.</p>
+</div>
+<div class="contact-grid">
+<div class="contact-info reveal">
+<div class="contact-item">
+<div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+<div class="contact-item-text"><h4>Email</h4><a href="mailto:somayeluri@gmail.com">somayeluri@gmail.com</a></div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+<div class="contact-item-text"><h4>Phone</h4><a href="tel:+12016609259">+1 (201) 660-9259</a></div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+<div class="contact-item-text"><h4>Location</h4><p>USA</p></div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon"><i class="fab fa-github"></i></div>
+<div class="contact-item-text"><h4>GitHub</h4><a href="https://github.com/SomaYeluri" target="_blank" rel="noopener noreferrer">github.com/SomaYeluri</a></div>
+</div>
+</div>
+<div class="contact-form reveal" id="contactFormWrap">
+<form id="contactForm" novalidate>
+<div class="form-group">
+<label for="name">Full Name *</label>
+<input type="text" id="name" name="name" placeholder="Your full name" required>
+<div class="error-msg">Please enter your name</div>
+</div>
+<div class="form-group">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email" placeholder="your@email.com" required>
+<div class="error-msg">Please enter a valid email</div>
+</div>
+<div class="form-group">
+<label for="subject">Subject *</label>
+<input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+<div class="error-msg">Please enter a subject</div>
+</div>
+<div class="form-group">
+<label for="message">Message *</label>
+<textarea id="message" name="message" placeholder="Your message..." rows="5" required></textarea>
+<div class="error-msg">Please enter a message</div>
+</div>
+<button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-paper-plane"></i> Send Message</button>
+</form>
+<div class="form-success" id="formSuccess">
+<i class="fas fa-check-circle"></i>
+<p>Message sent successfully!</p>
+<p style="font-size:13px;color:var(--muted);margin-top:8px">I'll get back to you soon.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<p>&copy; 2026 Soma Yeluri. All rights reserved.</p>
+<div class="footer-links">
+<a href="mailto:somayeluri@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+<a href="https://github.com/SomaYeluri" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+</div>
+</div>
+</footer>
+
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+(function(){
+'use strict';
+
+const html = document.documentElement;
+const themeBtn = document.getElementById('themeToggle');
+let currentTheme = 'light';
+html.setAttribute('data-theme', currentTheme);
+updateThemeIcon();
+
+themeBtn.addEventListener('click', () => {
+  currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', currentTheme);
+  updateThemeIcon();
+});
+function updateThemeIcon(){
+  const icon = themeBtn.querySelector('i');
+  icon.className = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+}
+
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 600);
+});
+setTimeout(() => { const l = document.getElementById('loader'); if(l) l.classList.add('hidden'); }, 2000);
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+const navbar = document.getElementById('navbar');
+const scrollProgress = document.getElementById('scroll-progress');
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+  const st = window.scrollY;
+  navbar.classList.toggle('scrolled', st > 50);
+  backTop.classList.toggle('visible', st > 400);
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  scrollProgress.style.width = h > 0 ? (st / h * 100) + '%' : '0%';
+  highlightNav();
+});
+
+function highlightNav(){
+  const sections = document.querySelectorAll('section[id]');
+  const links = navLinks.querySelectorAll('a');
+  let current = '';
+  sections.forEach(s => {
+    if(window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  links.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+}
+
+backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+const glow = document.getElementById('cursor-glow');
+if(window.matchMedia('(pointer:fine)').matches){
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+}
+
+const particlesEl = document.getElementById('particles');
+for(let i = 0; i < 20; i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random()*100 + '%';
+  p.style.animationDelay = Math.random()*15 + 's';
+  p.style.animationDuration = (10 + Math.random()*15) + 's';
+  p.style.width = p.style.height = (2 + Math.random()*4) + 'px';
+  particlesEl.appendChild(p);
+}
+
+const phrases = [
+  'Java & Spring Boot Engineer',
+  'Microservices & Distributed Systems',
+  'Event-Driven Architecture with Kafka',
+  'AWS & Azure Cloud Engineering',
+  'Generative AI, LLMs & RAG',
+  'Payments & Transaction Processing',
+  'Healthcare Technology & PBM'
+];
+let pi = 0, ci = 0, deleting = false;
+const typingEl = document.getElementById('typingText');
+function typeLoop(){
+  const phrase = phrases[pi];
+  if(!deleting){
+    typingEl.textContent = phrase.substring(0, ci+1);
+    ci++;
+    if(ci === phrase.length){deleting = true; setTimeout(typeLoop, 1800); return;}
+    setTimeout(typeLoop, 60);
+  } else {
+    typingEl.textContent = phrase.substring(0, ci-1);
+    ci--;
+    if(ci === 0){deleting = false; pi = (pi+1) % phrases.length; setTimeout(typeLoop, 400); return;}
+    setTimeout(typeLoop, 30);
+  }
+}
+typeLoop();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); }});
+}, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function animateCounters(){
+  document.querySelectorAll('.counter-value').forEach(el => {
+    const target = +el.getAttribute('data-target');
+    const suffix = el.getAttribute('data-suffix') || '+';
+    const duration = 2000;
+    const start = performance.now();
+    function update(now){
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(target * eased) + suffix;
+      if(progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ animateCounters(); counterObs.disconnect(); }});
+}, {threshold: 0.3});
+const counterSection = document.querySelector('.about-counters');
+if(counterSection) counterObs.observe(counterSection);
+
+function animateHeroStats(){
+  document.querySelectorAll('.stat-value').forEach(el => {
+    const target = +el.getAttribute('data-count');
+    const suffix = el.getAttribute('data-suffix') || '+';
+    const duration = 2000;
+    const start = performance.now();
+    function update(now){
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(target * eased) + suffix;
+      if(progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+const heroObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ animateHeroStats(); heroObs.disconnect(); }});
+}, {threshold: 0.3});
+const heroStats = document.querySelector('.hero-stats');
+if(heroStats) heroObs.observe(heroStats);
+
+const form = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  let valid = true;
+  form.querySelectorAll('.form-group').forEach(g => {
+    const input = g.querySelector('input, textarea');
+    if(!input) return;
+    g.classList.remove('error');
+    if(input.required && !input.value.trim()){
+      g.classList.add('error');
+      valid = false;
+    }
+    if(input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)){
+      g.classList.add('error');
+      valid = false;
+    }
+  });
+  if(valid){
+    form.style.display = 'none';
+    formSuccess.style.display = 'block';
+  }
+});
+
+document.querySelectorAll('.skill-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = 'translateY(-6px) perspective(600px) rotateX('+(-y*6)+'deg) rotateY('+(x*6)+'deg)';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = 'translateY(-6px) scale(1.01) perspective(600px) rotateX('+(-y*5)+'deg) rotateY('+(x*5)+'deg)';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+})();
+</script>
+</body>
+</html>
